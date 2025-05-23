@@ -162,7 +162,7 @@ export default function Navbar() {
       </nav>
 
       <Routes>
-        <Route path='/home' element={<Home/>}  />
+        <Route path='/' element={<Home/>}  />
         <Route path='/login' element={<Auth/>}  />
       </Routes>
     </>
