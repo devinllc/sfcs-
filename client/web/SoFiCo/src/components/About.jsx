@@ -3,8 +3,8 @@ import aboutImg from '../assets/about.svg'
 
 function About() {
   return (
-    <section id="#about" className="w-full py-8 bg-white flex flex-col items-center h-screen">
-      <div className="max-w-6xl w-full h-full flex flex-col md:flex-row items-center justify-between px-4 gap-6">
+    <section id="#about" className="w-full pt-25 bg-white flex flex-col items-center min-h-screen">
+      <div className="max-w-6xl w-full h-[70%] flex flex-col md:flex-row items-center justify-between px-4 gap-6">
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-3">
             <span className="flex items-center bg-gray-100 px-3 py-1 rounded-full text-xs font-semibold">
@@ -41,7 +41,7 @@ function About() {
           </a>
         </div>
 
-        <div className="w-full md:w-1/2 flex justify-center">
+        <div className="w-full md:w-1/3 flex justify-center">
           <div>
             <img src={aboutImg} className="transition scale-x-[-1] w-full h-full object-cover" />
           </div>
