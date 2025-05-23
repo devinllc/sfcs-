@@ -24,6 +24,26 @@ const walletSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    laonAmount: {
+        type: Number,
+        default: 0,
+    },
+    schemeAmount: {
+        type: Number,
+        default: 0,
+    },
+    loanId: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Loan',
+        },
+    ],
+    schemeId: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Scheme',
+        },
+    ],
     status: {
         type: String,
         enum: ['active', 'inactive'],

@@ -74,7 +74,7 @@ const updateUser = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    const { id } = req.params;
+    const { id } = req.query;
     const data = req.body;
 
     userModel.findByIdAndUpdate(id, data, { new: true })
@@ -92,7 +92,7 @@ const deleteUser = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    const { id } = req.params;
+    const { id } = req.query;
 
     userModel.findByIdAndDelete(id)
         .then((user) => {
@@ -198,8 +198,36 @@ const getLoans = async (req, res) => {
     }
 }
 
+const getwallet = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    const { id } = req.query;
+
+    userModel.findById(id)
+        .then((user) => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            Wallet.findById(user.walletId)
+                .then((wallet) => {
+                    if (!wallet) {
+                        return res.status(404).json({ message: 'Wallet not found' });
+                    }
+                    res.status(200).json({ message: 'Wallet found', wallet });
+                })
+                .catch((error) => {
+                    res.status(500).json({ message: 'Error fetching wallet', error });
+                });
+        }
+        )
+        .catch((error) => {
+            res.status(500).json({ message: 'Error fetching user', error });
+        });
+}
 
 
 
-module.exports = { createUser, loginUser, getUser, updateUser, deleteUser, getSchemes, getSchemeId, getLoanId, getLoans };
+module.exports = { createUser, loginUser, getUser, updateUser, deleteUser, getSchemes, getSchemeId, getLoanId, getLoans,getwallet };
 
