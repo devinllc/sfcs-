@@ -5,10 +5,11 @@ const db = require('./config/db');
 const app = exprress();
 const dotenv = require('dotenv');
 dotenv.config();
-// const userRouter = require('./routes/userRoutes');
+const userRouter = require('./routes/userRoutes');
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(exprress.json());
+app.use(exprress.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -38,7 +39,7 @@ app.get('/', (req, res) => {
     });
 });
 
-// app.use('/api/v1/user', userRouter);
+app.use('/user', userRouter);
 
 
 if (process.env.NODE_ENV !== 'production') {
