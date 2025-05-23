@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="h-[14vh] sticky top-0 w-full flex justify-center items-center pt-4 pb-4 bg-transparent relative z-20">
+      <nav className="h-[14vh] sticky top-0 w-full flex justify-center items-center pt-4 pb-4 bg-transparent relative z-20 ">
         <div
           className="bg-gradient-to-br from-[#0e2d3c] to-[#116466] hidden sm:flex backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl rounded-full items-center px-2 py-2 gap-2 animate-border"
           style={{

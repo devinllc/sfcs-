@@ -3,7 +3,7 @@ import aboutImg from '../assets/about.svg'
 
 function About() {
   return (
-    <section id="#about" className="w-full pt-25 bg-white flex flex-col items-center min-h-screen">
+    <section id="#about" className="w-full pt-25 bg-white flex flex-col items-center h-screen">
       <div className="max-w-6xl w-full h-[70%] flex flex-col md:flex-row items-center justify-between px-4 gap-6">
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-3">
@@ -41,10 +41,8 @@ function About() {
           </a>
         </div>
 
-        <div className="w-full md:w-1/3 flex justify-center">
-          <div>
-            <img src={aboutImg} className="transition scale-x-[-1] w-full h-full object-cover" />
-          </div>
+        <div className="h-120 w-full md:w-1/3 flex justify-center">
+            <img src={aboutImg} className="transition scale-x-[-1] w-full h-full object-contain object-fit" />
         </div>
       </div>
     </section>

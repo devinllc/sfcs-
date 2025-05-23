@@ -1,9 +1,9 @@
 import React from "react";
 import GetStartedImg from '../assets/getstart.svg'
-
+// bg-gradient-to-r from-[#0b2e3b] via-[#0f3d4c] to-[#0b2e3b]
 const GetStarted = () => {
   return (
-    <section className="w-full py-12 flex items-center justify-center bg-gradient-to-r from-[#0b2e3b] via-[#0f3d4c] to-[#0b2e3b] rounded-3xl my-8">
+    <section className="w-full py-12 flex items-center justify-center  rounded-3xl my-8">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-10">
         {/* Left: Text Content */}
         <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -32,16 +32,11 @@ const GetStarted = () => {
         <div className="w-full md:w-1/2 flex justify-center md:justify-end gap-4">
           {/* Phone 1 */}
           <img
-            src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=180&q=80"
+            src={GetStartedImg}
             alt="Phone 1"
-            className="w-32 h-64 object-cover rounded-2xl shadow-lg border-4 border-white -mr-8 z-10"
+            className="w-80 h-150 object-fit object-contain rounded-2xl shadow-lg  z-10"
           />
-          {/* Phone 2 */}
-          <img
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=180&q=80"
-            alt="Phone 2"
-            className="w-32 h-64 object-cover rounded-2xl shadow-lg border-4 border-white"
-          />
+         
         </div>
       </div>
     </section>
