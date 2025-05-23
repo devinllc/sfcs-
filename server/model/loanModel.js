@@ -23,6 +23,18 @@ const loanSchema = new mongoose.Schema({
         enum: ['pending', 'approved', 'rejected'],
         default: 'pending',
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
+    nextPaymentDate: {
+        type: Date,
+    },
+    paymentStatus: {
+        type: String,
+        enum: ['paid', 'unpaid'],
+        default: 'unpaid',
+    },
     createdAt: {
         type: Date,
         default: Date.now,

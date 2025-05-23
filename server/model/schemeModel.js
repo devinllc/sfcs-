@@ -42,12 +42,21 @@ const schemeSchema = new mongoose.Schema({
     // Creator of the scheme
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User' || 'Admin',
         required: true,
     },
     enabledJoining: {
         type: Boolean,
         default: true,
+    },
+    progess: {
+        type: Number,
+        default: 0,
+    },
+    ststus: {
+        type: String,
+        enum: ['active', 'inactive'],
+        default: 'active',
     },
     // Members added to the scheme after approval
     members: [
