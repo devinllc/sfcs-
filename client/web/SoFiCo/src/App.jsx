@@ -21,7 +21,6 @@ function App() {
     <div className='min-h-screen bg-gradient-to-br from-[#0e2d3c] to-[#116466]'>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthForm />} />
         <Route
           path="/dashboard"
