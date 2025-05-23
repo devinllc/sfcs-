@@ -6,6 +6,9 @@ const app = exprress();
 const dotenv = require('dotenv');
 dotenv.config();
 const userRouter = require('./routes/userRoutes');
+const schemeRouter = require('./routes/schemeRouter');
+const loanRouter = require('./routes/loanRouter');
+const walletRouter = require('./routes/walletRouter');
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(exprress.json());
@@ -40,6 +43,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRouter);
+app.use('/scheme', schemeRouter);
+app.use('/loan', loanRouter);
+app.use('/wallet', walletRouter);
 
 
 if (process.env.NODE_ENV !== 'production') {
