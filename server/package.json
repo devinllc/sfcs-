@@ -1,0 +1,15 @@
+{
+  "name": "sofico",
+  "version": "1.0.0",
+  "description": "sofico sfc",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "keywords": [
+    "sfc",
+    "sofico"
+  ],
+  "author": "Ramesh Vishwakarma , Abhishek Raj",
+  "license": "ISC"
+}
