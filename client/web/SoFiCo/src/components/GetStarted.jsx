@@ -2,8 +2,7 @@ import React from "react";
 
 const GetStarted = () => {
   return (
-    <div className="bg-white">
-      <section className="w-full py-12 flex items-center justify-center bg-gradient-to-r from-[#0b2e3b] via-[#0f3d4c] to-[#0b2e3b] rounded-3xl my-8">
+    <section className="w-full py-12 flex items-center justify-center bg-gradient-to-r from-[#0b2e3b] via-[#0f3d4c] to-[#0b2e3b] rounded-3xl my-8">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between px-6 md:px-10">
         {/* Left: Text Content */}
         <div className="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
@@ -45,7 +44,6 @@ const GetStarted = () => {
         </div>
       </div>
     </section>
-    </div>
   );
 };
 

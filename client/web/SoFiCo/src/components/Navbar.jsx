@@ -1,64 +1,39 @@
 import React, { useState } from 'react';
 import logo from '../assets/image.png';
 import { NavLink, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Auth from './Auth';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = (
     <>
-      <NavLink
-        to="/"
-        end
-        className={({ isActive }) =>
+      <NavLink to="/" end className={({ isActive }) =>
           `relative px-3 py-1 rounded-full font-medium transition-all duration-200
           ${isActive ? "bg-white/80 text-[#0a3d4d] shadow" : "text-white hover:bg-white/20 hover:text-[#d6ff4b]"}`
         }
-        onClick={() => setMenuOpen(false)}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/about"
-        className={({ isActive }) =>
+        onClick={() => setMenuOpen(false)}>Home</NavLink>
+      <NavLink to="/about" className={({ isActive }) =>
           `relative px-3 py-1 rounded-full font-medium transition-all duration-200
           ${isActive ? "bg-white/80 text-[#0a3d4d] shadow" : "text-white hover:bg-white/20 hover:text-[#d6ff4b]"}`
         }
-        onClick={() => setMenuOpen(false)}
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/featured"
-        className={({ isActive }) =>
+        onClick={() => setMenuOpen(false)}>About</NavLink>
+      <NavLink to="/featured" className={({ isActive }) =>
           `relative px-3 py-1 rounded-full font-medium transition-all duration-200
           ${isActive ? "bg-white/80 text-[#0a3d4d] shadow" : "text-white hover:bg-white/20 hover:text-[#d6ff4b]"}`
         }
-        onClick={() => setMenuOpen(false)}
-      >
-        Featured
-      </NavLink>
-      <NavLink
-        to="/services"
-        className={({ isActive }) =>
+        onClick={() => setMenuOpen(false)}>Featured </NavLink>
+      <NavLink to="/services" className={({ isActive }) =>
           `relative px-3 py-1 rounded-full font-medium transition-all duration-200
           ${isActive ? "bg-white/80 text-[#0a3d4d] shadow" : "text-white hover:bg-white/20 hover:text-[#d6ff4b]"}`
         }
-        onClick={() => setMenuOpen(false)}
-      >
-        Services
-      </NavLink>
-      <NavLink
-        to="/login"
-        className={({ isActive }) =>
-          `ml-0 mt-4 px-5 py-2 rounded-full border border-white/40 font-semibold text-white transition-all duration-200
-          bg-gradient-to-r from-green-400/90 to-green-500/80 shadow-md hover:from-green-300 hover:to-green-400 hover:text-[#0a3d4d]
+        onClick={() => setMenuOpen(false)}>Services</NavLink>
+      <NavLink to="/login" className={({ isActive }) =>
+          `ml-0 mt-4 px-5 py-2 rounded-full border border-white/40 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-green-400/90 to-green-500/80 shadow-md hover:from-green-300 hover:to-green-400 hover:text-[#0a3d4d]
           ${isActive ? "ring-2 ring-green-400" : ""}`
         }
-        onClick={() => setMenuOpen(false)}
-      >
-        Sign In
-      </NavLink>
+        onClick={() => setMenuOpen(false)}>Sign In</NavLink>
     </>
   );
 
@@ -186,7 +161,10 @@ export default function Navbar() {
         </div>
       </nav>
 
-      
+      <Routes>
+        <Route path='/home' element={<Home/>}  />
+        <Route path='/login' element={<Auth/>}  />
+      </Routes>
     </>
   );
 }
