@@ -29,7 +29,7 @@ export default function Navbar() {
           ${isActive ? "bg-white/80 text-[#0a3d4d] shadow" : "text-white hover:bg-white/20 hover:text-[#d6ff4b]"}`
         }
         onClick={() => setMenuOpen(false)}>Services</NavLink>
-      <NavLink to="/login" className={({ isActive }) =>
+      <NavLink to="/auth" className={({ isActive }) =>
           `ml-0 mt-4 px-5 py-2 rounded-full border border-white/40 font-semibold text-white transition-all duration-200 bg-gradient-to-r from-green-400/90 to-green-500/80 shadow-md hover:from-green-300 hover:to-green-400 hover:text-[#0a3d4d]
           ${isActive ? "ring-2 ring-green-400" : ""}`
         }
@@ -95,7 +95,7 @@ export default function Navbar() {
           </div>
           {/* Sign In Button */}
           <NavLink
-            to="/login"
+            to="/auth"
             className={({ isActive }) =>
               `ml-4 px-5 py-2 rounded-full border border-white/40 font-semibold text-white transition-all duration-200
               bg-gradient-to-r from-green-400/90 to-green-500/80 shadow-md hover:from-green-300 hover:to-green-400 hover:text-[#0a3d4d]

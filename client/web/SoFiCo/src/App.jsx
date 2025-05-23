@@ -11,25 +11,29 @@ import Navbar from './components/Navbar'
 const ProtectedRoute = ({ children }) => {
   const userId = getCurrentUserId();
   if (!userId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/auth" replace />;
   }
   return children;
 };
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<AuthForm />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <div className='min-h-screen bg-gradient-to-br from-[#0e2d3c] to-[#116466]'>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<AuthForm />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
   );
 }
 

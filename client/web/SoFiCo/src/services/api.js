@@ -36,7 +36,6 @@ export const createUser = async (userData) => {
     }
 };
 
-// Login user
 export const loginUser = async (credentials) => {
     try {
         const response = await fetch(`${BASE_URL}/user/login`, {
@@ -48,10 +47,8 @@ export const loginUser = async (credentials) => {
         });
 
         const data = await response.json();
-        
-        // Check if the response contains user data
+
         if (data && data.user) {
-            // Store the user ID from the response
             setCurrentUserId(data.user._id || data.user.id);
             return data;
         } else {
