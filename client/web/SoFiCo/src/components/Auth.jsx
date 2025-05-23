@@ -1,6 +1,8 @@
 // Install framer-motion first: npm install framer-motion
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createUser, loginUser, setCurrentUserId } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const formVariants = {
   initial: { opacity: 0, x: 50 },
@@ -9,7 +11,65 @@ const formVariants = {
 };
 
 function AuthForm() {
+  const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(true);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await createUser(formData);
+      setSuccess('Registration successful!');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        password: ''
+      });
+      // After successful registration, switch to login view
+      setIsSignUp(false);
+    } catch (err) {
+      setError(err.message || 'Registration failed. Please try again.');
+    }
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    try {
+      const { email, password } = formData;
+      const response = await loginUser({ email, password });
+      
+      // If we get here, login was successful
+      setSuccess('Login successful!');
+      // Navigate to dashboard immediately
+      navigate('/dashboard', { replace: true });
+      
+    } catch (err) {
+      setError(err.message || 'Login failed. Please try again.');
+      setCurrentUserId(null);
+    }
+  };
 
   return (
     <div className='min-h-[85vh] flex justify-center items-center '>
@@ -95,16 +155,43 @@ function AuthForm() {
               }}
             >
               <h2 style={{ fontWeight: 700, marginBottom: 24 }}>Create Account</h2>
-              <form className="form" autoComplete="off">
-                <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
-                  <input type="text" placeholder="First Name" style={inputStyle} />
-                  <input type="text" placeholder="Last Name" style={inputStyle} />
-                </div>
-                <input type="email" placeholder="Email" style={inputStyle} />
-                <input type="tel" placeholder="Phone Number" style={inputStyle} />
-                <input type="password" placeholder="Password" style={inputStyle} />
+              <form className="form" autoComplete="off" onSubmit={handleSignUp}>
+                {error && <div style={{ color: 'red', marginBottom: '16px' }}>{error}</div>}
+                {success && <div style={{ color: 'green', marginBottom: '16px' }}>{success}</div>}
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Full Name" 
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  placeholder="Phone Number" 
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
+                <input 
+                  type="password" 
+                  name="password"
+                  placeholder="Password" 
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
                 <button type="submit" style={buttonStyle}>CREATE ACCOUNT</button>
-                </form>
+              </form>
             </motion.div>
           ) : (
             <motion.div
@@ -124,9 +211,25 @@ function AuthForm() {
               }}
             >
               <h2 style={{ fontWeight: 700, marginBottom: 24 }}>Sign in</h2>
-              <form className="form" autoComplete="off">
-                <input type="email" placeholder="Email" style={inputStyle} />
-                <input type="password" placeholder="Password" style={inputStyle} />
+              <form className="form" autoComplete="off" onSubmit={handleSignIn}>
+                {error && <div style={{ color: 'red', marginBottom: '16px' }}>{error}</div>}
+                {success && <div style={{ color: 'green', marginBottom: '16px' }}>{success}</div>}
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
+                <input 
+                  type="password" 
+                  name="password"
+                  placeholder="Password" 
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  style={inputStyle} 
+                />
                 <button type="submit" style={buttonStyle}>SIGN IN</button>
                 <a href="#" style={{ color: '#007bff', fontSize: 14, marginTop: 10, textAlign: 'right', display: 'block' }}>
                   Forgot your password?

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { getCurrentUserId, logout } from '../services/api';
 
 const tabs = [
   { label: "Dashboard", icon: "🏠" },
@@ -9,6 +11,8 @@ const tabs = [
 
 export default function FintechDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
+  const navigate = useNavigate();
+  const userId = getCurrentUserId();
 
   // Dummy Data (same as before)
   const userName = "Riya Sharma";
@@ -42,6 +46,16 @@ export default function FintechDashboard() {
       { name: "PAN Card", actions: ["View", "Download"] },
     ],
   };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  if (!userId) {
+    navigate('/');
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0e2d3c] to-[#116466] flex text-white">
@@ -213,7 +227,10 @@ export default function FintechDashboard() {
               <button className="bg-yellow-500 hover:bg-yellow-600 rounded px-6 py-2 font-semibold">
                 Edit Profile
               </button>
-              <button className="bg-red-600 hover:bg-red-700 rounded px-6 py-2 font-semibold">
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 hover:bg-red-700 rounded px-6 py-2 font-semibold"
+              >
                 Logout
               </button>
             </div>
