@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import logo from '../assets/image.png';
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home';
 import Auth from './Auth';
+import AuthForm from './Auth';
+import Dashboard from './Dashboard';
+import { getCurrentUserId } from '../services/api';
+import About from './About';
+import Featured from './Featured';
+import Trust from './Trust';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  // Protected Route component
+  const ProtectedRoute = ({ children }) => {
+    const userId = getCurrentUserId();
+    if (!userId) {
+      return <Navigate to="/auth" replace />;
+    }
+    return children;
+  };
   const navLinks = (
     <>
       <NavLink to="/" end className={({ isActive }) =>
@@ -164,6 +177,20 @@ export default function Navbar() {
       <Routes>
         <Route path='/' element={<Home/>}  />
         <Route path='/login' element={<Auth/>}  />
+        <Route path="/auth" element={<AuthForm />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/featured" element={<Featured />} />
+        <Route path="/services" element={<Trust />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
     </>
   );
