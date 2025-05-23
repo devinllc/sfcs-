@@ -14,7 +14,6 @@ export default function FintechDashboard() {
   const navigate = useNavigate();
   const userId = getCurrentUserId();
 
-  // Dummy Data (same as before)
   const userName = "Riya Sharma";
   const totalBalance = 325000;
   const income = 120000;
@@ -59,7 +58,6 @@ export default function FintechDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0e2d3c] to-[#116466] flex text-white">
-      {/* Sidebar */}
       <aside className="w-20 md:w-60 bg-[#0e2d3c] flex flex-col py-8 px-2 md:px-6 shadow-lg">
         <div className="mb-10 flex items-center justify-center md:justify-start">
           <span className="text-2xl md:text-3xl font-bold tracking-wide">SoFiCo</span>
@@ -79,7 +77,6 @@ export default function FintechDashboard() {
         </nav>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 p-4 md:p-10 overflow-auto">
         {activeTab === "Dashboard" && (
           <section>

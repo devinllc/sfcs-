@@ -3,22 +3,18 @@ import aboutImg from '../assets/about.svg'
 
 function About() {
   return (
-    <section id="#about" className="w-full py-8 bg-white flex flex-col items-center min-h-screen">
-      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between px-4 gap-6">
-        {/* Left: Content */}
+    <section id="#about" className="w-full py-8 bg-white flex flex-col items-center h-screen">
+      <div className="max-w-6xl w-full h-full flex flex-col md:flex-row items-center justify-between px-4 gap-6">
         <div className="w-full md:w-1/2">
-          {/* Badge */}
           <div className="flex items-center mb-3">
             <span className="flex items-center bg-gray-100 px-3 py-1 rounded-full text-xs font-semibold">
               <span className="text-yellow-500 text-lg mr-1">🔥</span>
               ABOUT
             </span>
           </div>
-          {/* Heading */}
-          <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+          <h2 className="text-10xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
             Empowering Communities.<br className="hidden md:block" /> Simplifying Finance.
           </h2>
-          {/* List */}
           <ul className="mb-6 space-y-2 text-gray-600 text-base">
             <li>• One-stop platform for users, agents, and admins.</li>
             <li>• Seamless onboarding and real-time notifications.</li>
@@ -26,7 +22,6 @@ function About() {
             <li>• Secure dashboards with instant approvals.</li>
             <li>• Scalable microservices architecture.</li>
           </ul>
-          {/* Button */}
           <a
             href="#"
             className="inline-flex items-center px-5 py-2.5 bg-green-500 text-white font-semibold rounded-full shadow hover:bg-green-600 transition text-sm"

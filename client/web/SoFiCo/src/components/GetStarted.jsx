@@ -1,4 +1,5 @@
 import React from "react";
+import GetStartedImg from '../assets/getstart.svg'
 
 const GetStarted = () => {
   return (

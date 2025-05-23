@@ -44,7 +44,6 @@ function AuthForm() {
         phone: '',
         password: ''
       });
-      // After successful registration, switch to login view
       setIsSignUp(false);
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.');
@@ -60,9 +59,7 @@ function AuthForm() {
       const { email, password } = formData;
       const response = await loginUser({ email, password });
       
-      // If we get here, login was successful
       setSuccess('Login successful!');
-      // Navigate to dashboard immediately
       navigate('/dashboard', { replace: true });
       
     } catch (err) {
@@ -80,7 +77,9 @@ function AuthForm() {
         overflow: 'hidden',
         boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
       }}>
-        {/* Left Panel */}
+
+
+
         <div style={{
           flex: 1,
           background: 'linear-gradient(135deg, #4e9af1 0%, #3461c1 100%)',
@@ -135,7 +134,8 @@ function AuthForm() {
             </>
           )}
         </div>
-        {/* Right Panel */}
+
+        
         <AnimatePresence mode="wait">
           {isSignUp ? (
             <motion.div
