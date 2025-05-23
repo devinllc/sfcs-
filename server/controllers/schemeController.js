@@ -4,19 +4,47 @@ const schemeModel = require('../model/schemeModel');
 
 
 
-const createScheme = async (req, res) => {
+const mongoose = require('mongoose');
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    const data = req.body;
-    const scheme = await new schemeModel(data);
-    await scheme.save();
-    const user = await userModel.findById(data.userId);
-    user.schemeId = scheme._id;
-    await user.save();
-    res.status(200).json({ message: 'Scheme created successfully', scheme, user });
+
+
+const createScheme = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  const { id } = req.query;
+  const data = req.body;
+
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid or missing user ID" });
+  }
+
+  const userId = new mongoose.Types.ObjectId(id);
+
+  const user = await userModel.findById(userId);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const schemeData = {
+    ...data,
+    interestRate: Number(data.interestRate),
+    tenure: Number(data.tenure),
+    minAmount: Number(data.minAmount),
+    maxAmount: Number(data.maxAmount),
+    createdBy: userId,
+  };
+
+  const scheme = new schemeModel(schemeData);
+  await scheme.save();
+
+  user.schemeId.push(scheme._id.toString());
+  await user.save();
+
+  return res.status(200).json({ message: 'Scheme created and linked successfully', scheme, user });
 };
+
 
 const updateScheme = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
